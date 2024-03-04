@@ -17,6 +17,7 @@ class MemberController extends Controller
             'address'=>$req->address,
             'weight'=>$req->weight,
             'height'=>$req->height,
+            'photo'=>$req->photo,
         ]);
 
         return response()->json(['message'=>"Succeddfully inserted"],200);

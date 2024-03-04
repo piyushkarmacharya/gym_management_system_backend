@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\MemberController;
+
+use App\Http\Controllers\ImageeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,3 +29,5 @@ Route::get('Member/details',[MemberController::class,'read']);
 Route::get('Member/details/{email}',[MemberController::class,'readSingle']);
 
 Route::post('Staff/register',[StaffController::class,'create']);
+Route::post('img',[ImageeController::class,'create']);
+Route::get('img/get',[ImageeController::class,'read']);

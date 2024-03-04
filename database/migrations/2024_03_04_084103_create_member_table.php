@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('address');
             $table->double('weight');
             $table->double('height');
+            $table->mediumText('photo');
             $table->timestamps();
         });
     }
