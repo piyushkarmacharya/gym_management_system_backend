@@ -26,8 +26,8 @@ class MemberController extends Controller
         $data=Member::all();
         return response()->json($data);
     }
-    public function readSingle($email,Request $req){
-        $data=Member::where('email',$email)->get();
+    public function readSingle($name,Request $req){
+        $data=Member::where('name',$name)->get();
         return response()->json($data);
     }
 }
