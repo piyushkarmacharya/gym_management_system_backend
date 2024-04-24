@@ -26,6 +26,8 @@ Route::get('Staff/login/{email}',[StaffController::class,'read']);
 
 Route::post('Member/register',[MemberController::class,'create']);
 Route::get('Member/details',[MemberController::class,'read']);
+Route::get('Member/delete/{mid}',[MemberController::class,'delete']);
+
 Route::get('Member/details/{name}',[MemberController::class,'readSingle']);
 
 Route::post('Staff/register',[StaffController::class,'create']);

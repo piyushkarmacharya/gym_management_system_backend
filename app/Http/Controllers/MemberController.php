@@ -30,4 +30,8 @@ class MemberController extends Controller
         $data=Member::where('name',$name)->get();
         return response()->json($data);
     }
+    public function delete($mid,Request $req){
+        $mem=Member::where('mid',$mid)->delete();
+        
+    }
 }
