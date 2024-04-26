@@ -32,6 +32,21 @@ class MemberController extends Controller
     }
     public function delete($mid,Request $req){
         $mem=Member::where('mid',$mid)->delete();
-        
+    }
+
+    public function update($mid,Request $req){
+        $memb=Member::where('mid',$mid)->update(
+            [
+            'name'=>$req->name,
+            'dob'=>$req->dob,
+            'gender'=>$req->gender,
+            'email'=>$req->email,
+            'contact_number'=>$req->contact_number,
+            'address'=>$req->address,
+            'weight'=>$req->weight,
+            'height'=>$req->height,
+            'photo'=>$req->photo,
+            ]
+        );
     }
 }
