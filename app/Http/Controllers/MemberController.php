@@ -18,6 +18,7 @@ class MemberController extends Controller
             'weight'=>$req->weight,
             'height'=>$req->height,
             'photo'=>$req->photo,
+            'password'=>md5($req->password),
         ]);
 
         return response()->json(['message'=>"Succeddfully inserted"],200);
@@ -46,6 +47,7 @@ class MemberController extends Controller
             'weight'=>$req->weight,
             'height'=>$req->height,
             'photo'=>$req->photo,
+            'password'=>md5($req->password),
             ]
         );
     }

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->double('weight');
             $table->double('height');
             $table->mediumText('photo');
+            $table->string('password');
             $table->timestamps();
         });
     }
