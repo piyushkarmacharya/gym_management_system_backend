@@ -23,7 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('Admin/login/{email}',[AdminController::class,'read']);
+Route::post('Admin/login',[AdminController::class,'login']);
+
 Route::get('Staff/login/{email}',[StaffController::class,'read']);
+Route::get('Member/login/{email}',[MemberController::class,'readByEmail']);
 
 Route::post('Member/register',[MemberController::class,'create']);
 Route::get('Member/details',[MemberController::class,'read']);
