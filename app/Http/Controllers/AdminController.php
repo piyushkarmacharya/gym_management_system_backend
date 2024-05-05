@@ -27,8 +27,8 @@ class AdminController extends Controller
         ]);
 
 
-        return response()->json(["login"=> $login, "token" => "abc"]);
+        return response()->json(["login"=> $login]);
         
-        // return response()->json($req->all());
+        
     }
 }

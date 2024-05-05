@@ -22,8 +22,9 @@ use App\Http\Controllers\AttendanceQrController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('Admin/login/{email}',[AdminController::class,'read']);
+
 Route::post('Admin/login',[AdminController::class,'login']);
+Route::post('Staff/login',[StaffController::class,'login']);
 
 Route::get('Staff/login/{email}',[StaffController::class,'read']);
 Route::get('Member/login/{email}',[MemberController::class,'readByEmail']);

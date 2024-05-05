@@ -11,4 +11,9 @@ class Member extends Model
     protected $table='member';
     protected $primaryKey='mid';
     protected $fillable=['name','dob','gender','email','contact_number','address','weight','height','photo','password'];
+
+    protected $casts = [
+        
+        'password' => 'hashed',
+    ];
 }
