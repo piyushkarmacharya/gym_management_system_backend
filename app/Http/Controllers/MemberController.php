@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Member;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -18,11 +19,20 @@ class MemberController extends Controller
             'weight'=>$req->weight,
             'height'=>$req->height,
             'photo'=>$req->photo,
-            'password'=>md5($req->password),
+            'password'=>$req->password,
         ]);
 
         return response()->json(['message'=>"Succeddfully inserted"],200);
     }
+
+    public function login(Request $req){
+        $login = Auth::guard('member')->attempt([
+            'email' => $req->email,
+            'password' => $req->password,
+        ]);
+        return response()->json(["login"=> $login]);
+    }
+
     public function read(){
         $data=Member::all();
         return response()->json($data);
@@ -53,7 +63,7 @@ class MemberController extends Controller
             'weight'=>$req->weight,
             'height'=>$req->height,
             'photo'=>$req->photo,
-            'password'=>md5($req->password),
+            'password'=>$req->password,
             ]
         );
     }
