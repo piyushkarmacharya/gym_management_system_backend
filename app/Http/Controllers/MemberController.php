@@ -30,7 +30,11 @@ class MemberController extends Controller
             'email' => $req->email,
             'password' => $req->password,
         ]);
-        return response()->json(["login"=> $login]);
+        $mid=0;
+        if($login){
+            $mid=Member::where('email',$req->email)->first()->mid;
+        }
+        return response()->json(["login"=> $login,"mid"=>$mid]);
     }
 
     public function read(){

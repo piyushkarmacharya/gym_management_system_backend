@@ -8,6 +8,7 @@ use App\Http\Controllers\MemberController;
 
 use App\Http\Controllers\ImageeController;
 use App\Http\Controllers\AttendanceQrController;
+use App\Http\Controllers\AttendanceController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,5 +40,6 @@ Route::post('Staff/register',[StaffController::class,'create']);
 
 Route::get('AttendanceQr',[AttendanceQrController::class,'read']);
 Route::post('AttendanceQr/update',[AttendanceQrController::class,'update']);             
+Route::post('attendance',[AttendanceController::class,'attend']);             
 
 
