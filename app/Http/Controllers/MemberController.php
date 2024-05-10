@@ -67,7 +67,7 @@ class MemberController extends Controller
             'weight'=>$req->weight,
             'height'=>$req->height,
             'photo'=>$req->photo,
-            'password'=>$req->password,
+            
             ]
         );
     }
