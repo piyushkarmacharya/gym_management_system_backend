@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('attendance', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('mid');
-            $table->foreign('mid')->references('mid')->on('member');
+            $table->foreign('mid')->references('mid')->on('member')->onDelete('cascade');
             $table->timestamps();
         });
     }

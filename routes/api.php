@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('Admin/login',[AdminController::class,'login']);
+Route::post('admin/change-password',[AdminController::class,'changePassword']);
 Route::post('Staff/login',[StaffController::class,'login']);
 Route::post('Member/login',[MemberController::class,'login']);
 

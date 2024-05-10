@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Admin;
+use App\Models\AttendanceQr;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +17,10 @@ class DatabaseSeeder extends Seeder
         Admin::create([
             'email' => "admin@gmail.com",
             'password' => "secretsecret"
+        ]);
+        AttendanceQr::create([
+            'qrstr' => "hello",
+            
         ]);
         // \App\Models\User::factory(10)->create();
 

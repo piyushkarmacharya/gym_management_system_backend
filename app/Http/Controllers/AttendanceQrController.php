@@ -8,7 +8,7 @@ use App\Models\AttendanceQr;
 class AttendanceQrController extends Controller
 {
     public function read(){
-        $data=AttendanceQr::all();
+        $data=AttendanceQr::first();
         return response()->json($data);
     }
 

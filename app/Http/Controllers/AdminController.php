@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -25,10 +26,37 @@ class AdminController extends Controller
             'email' => $req->email,
             'password' => $req->password,
         ]);
-
-
-        return response()->json(["login"=> $login]);
+        $id=0;
+        if($login){
+            $id=Admin::where('email',$req->email)->first()->id;
+        }
+        return response()->json(["login"=> $login,"id"=>$id]);
         
         
+    }
+    public function changePassword(Request $req){
+        $user = Admin::where('id', $req->id)->first();
+
+       
+        if($user) {
+            $email = $user->email;
+
+            if(Auth::guard('admin')->attempt([
+                'email' => $email,
+                'password' => $req->oldPassword,
+            ])) {
+                Admin::where('id',$req->id)->update(
+                    [
+                        'password' => Hash::make($req->newPassword),
+                    ]
+                );
+
+            return response()->json(['message'=>'success']);
+
+            }
+        }
+
+        return response()->json(['message'=>'failed']);
+
     }
 }
