@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('mid');
             $table->foreign('mid')->references('mid')->on('member')->onDelete('cascade');
+            $table->string("date");
             $table->timestamps();
         });
     }
