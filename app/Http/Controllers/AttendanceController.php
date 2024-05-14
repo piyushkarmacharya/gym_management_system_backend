@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 
 
 class AttendanceController extends Controller
@@ -42,8 +43,25 @@ class AttendanceController extends Controller
         }
     }
 
-    public function getAttendanceInfo($date){
-        $data=Attendance::where('date',$date)->get();
-        return response()->json($data);
+    public function getAttendanceInfo($date)
+    {
+        $info = DB::table('member')
+            ->join('attendance', 'member.mid', '=', 'attendance.mid')
+            ->select('attendance.date','member.name','member.mid','member.contact_number','attendance.created_at')
+            ->where('attendance.date','=',$date)
+            ->get();
+        
+        return response()->json($info);
+    }
+    
+    public function getMemberAttendanceInfo($mid)
+    {
+        $info = DB::table('member')
+            ->join('attendance', 'member.mid', '=', 'attendance.mid')
+            ->select('attendance.date','member.name','member.mid','member.contact_number','attendance.created_at')
+            ->where('attendance.mid','=',$mid)
+            ->get();
+        
+        return response()->json($info);
     }
 }

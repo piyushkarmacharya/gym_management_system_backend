@@ -42,6 +42,7 @@ Route::post('Staff/register',[StaffController::class,'create']);
 Route::get('AttendanceQr',[AttendanceQrController::class,'read']);
 Route::post('AttendanceQr/update',[AttendanceQrController::class,'update']);             
 Route::post('attendance',[AttendanceController::class,'attend']);             
-Route::get('attendance/info/{date}',[AttendanceController::class,'getAttendanceInfo']);             
+Route::get('attendance/info/{date}',[AttendanceController::class,'getAttendanceInfo']);          
+Route::get('memberattendance/info/{mid}',[AttendanceController::class,'getMemberAttendanceInfo']);          
 
 
