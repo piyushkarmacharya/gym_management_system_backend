@@ -36,11 +36,8 @@ class AdminController extends Controller
     }
     public function changePassword(Request $req){
         $user = Admin::where('id', $req->id)->first();
-
-       
         if($user) {
             $email = $user->email;
-
             if(Auth::guard('admin')->attempt([
                 'email' => $email,
                 'password' => $req->oldPassword,
@@ -50,13 +47,9 @@ class AdminController extends Controller
                         'password' => Hash::make($req->newPassword),
                     ]
                 );
-
             return response()->json(['message'=>'success']);
-
             }
         }
-
         return response()->json(['message'=>'failed']);
-
     }
 }

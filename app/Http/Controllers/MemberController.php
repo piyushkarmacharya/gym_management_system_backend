@@ -5,6 +5,7 @@ use App\Models\Member;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class MemberController extends Controller
 {
@@ -70,5 +71,24 @@ class MemberController extends Controller
             
             ]
         );
+    }
+    
+    public function changePassword(Request $req){
+        $user = Member::where('mid', $req->mid)->first();
+        if($user) {
+            $email = $user->email;
+            if(Auth::guard('member')->attempt([
+                'email' => $email,
+                'password' => $req->oldPassword,
+            ])) {
+                Member::where('mid',$req->mid)->update(
+                    [
+                        'password' => Hash::make($req->newPassword),
+                    ]
+                );
+            return response()->json(['message'=>'success']);
+            }
+        }
+        return response()->json(['message'=>'failed']);
     }
 }
