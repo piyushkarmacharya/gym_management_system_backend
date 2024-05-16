@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('member', function (Blueprint $table) {
             $table->id('mid');
             $table->string('name');
-            $table->dateTime('dob');
+            $table->date('dob');
             $table->enum('gender',["M","F","O"]);
             $table->string('email');
             $table->bigInteger('contact_number');
