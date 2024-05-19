@@ -40,6 +40,7 @@ class AttendanceController extends Controller
                 ]
 
             );
+            return response()->json(["message" => "Checked in successfully"]);
         }
     }
 
@@ -60,6 +61,7 @@ class AttendanceController extends Controller
             ->join('attendance', 'member.mid', '=', 'attendance.mid')
             ->select('attendance.date','member.name','member.mid','member.contact_number','attendance.created_at')
             ->where('attendance.mid','=',$mid)
+            ->orderBy('date', 'desc')
             ->get();
         
         return response()->json($info);

@@ -32,10 +32,14 @@ class MemberController extends Controller
             'password' => $req->password,
         ]);
         $mid=0;
+        $name="";
+        $photo="";
         if($login){
             $mid=Member::where('email',$req->email)->first()->mid;
+            $name=Member::where('email',$req->email)->first()->name;
+            $photo=Member::where('email',$req->email)->first()->photo;
         }
-        return response()->json(["login"=> $login,"mid"=>$mid]);
+        return response()->json(["login"=> $login,"mid"=>$mid,"name"=>$name,"photo"=>$photo]);
     }
 
     public function read(){
