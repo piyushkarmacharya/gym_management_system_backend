@@ -10,7 +10,7 @@ class Admin extends Authenticatable
 {
     use HasFactory;
     protected $table='admin';
-    protected $fillable=['email','password'];
+    protected $fillable=['email','password','name'];
 
      /**
      * The attributes that should be cast.

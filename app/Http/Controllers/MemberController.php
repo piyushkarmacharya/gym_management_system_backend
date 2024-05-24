@@ -1,15 +1,36 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\MemberRequest;
 use App\Models\Member;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class MemberController extends Controller
 {
     public function create(Request $req){
+        $validator = Validator::make($req->all(), [
+            'name' => 'required|string|alpha:ascii',
+            'dob' => 'nullable|date',
+            'gender' => 'required',
+            'email' => 'required|string|unique:member,email',
+            'contact_number' => 'required',
+            'address' => 'required',
+            'weight' => 'nullable',
+            'height' => 'nullable',
+            'password' => 'required',
+            'photo' => 'nullable'
+        ]);
+
+        if ($validator->fails()) {
+             return response()->json(['error'=>$validator->errors()],400);
+        }
+
         $member=Member::create([
             'name'=>$req->name,
             'dob'=>$req->dob,
@@ -23,7 +44,7 @@ class MemberController extends Controller
             'password'=>$req->password,
         ]);
 
-        return response()->json(['message'=>"Succeddfully inserted"],200);
+        return response()->json(['message'=>"Member created successfully"],200);
     }
 
     public function login(Request $req){
@@ -75,6 +96,7 @@ class MemberController extends Controller
             
             ]
         );
+
     }
     
     public function changePassword(Request $req){

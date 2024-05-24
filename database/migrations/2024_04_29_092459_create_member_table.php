@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('member', function (Blueprint $table) {
             $table->id('mid');
             $table->string('name');
-            $table->date('dob');
+            $table->date('dob')->nullable();
             $table->enum('gender',["M","F","O"]);
-            $table->string('email');
+            $table->string('email')->unique();
             $table->bigInteger('contact_number');
             $table->string('address');
-            $table->double('weight');
-            $table->double('height');
-            $table->mediumText('photo');
+            $table->double('weight')->nullable();
+            $table->double('height')->nullable();
+            $table->mediumText('photo')->nullable();
             $table->string('password');
             $table->timestamps();
         });
