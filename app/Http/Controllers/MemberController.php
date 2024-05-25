@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class MemberController extends Controller
 {
@@ -18,7 +19,7 @@ class MemberController extends Controller
             'name' => 'required|string|alpha:ascii',
             'dob' => 'nullable|date',
             'gender' => 'required',
-            'email' => 'required|string|unique:member,email',
+            'email' => 'required|string|unique:member,email|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,6}$/',
             'contact_number' => 'required',
             'address' => 'required',
             'weight' => 'nullable',
@@ -82,6 +83,22 @@ class MemberController extends Controller
     }
 
     public function update($mid,Request $req){
+        $currentMember = Member::find($mid);
+        $validator = Validator::make($req->all(), [
+            'name' => 'required|string|alpha:ascii',
+            'dob' => 'nullable|date',
+            'gender' => 'required',
+            'email' => "required|unique:member,email,{$mid},mid|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,6}$/",
+            'contact_number' => 'required',
+            'address' => 'required',
+            'weight' => 'nullable',
+            'height' => 'nullable',
+            'photo' => 'nullable'
+        ]);
+
+        if ($validator->fails()) {
+             return response()->json(['error'=>$validator->errors()],400);
+        }
         $memb=Member::where('mid',$mid)->update(
             [
             'name'=>$req->name,
@@ -96,6 +113,7 @@ class MemberController extends Controller
             
             ]
         );
+        return response()->json(['message'=>"Update Successful"]);
 
     }
     
