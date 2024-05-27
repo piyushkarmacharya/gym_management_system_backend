@@ -16,7 +16,7 @@ class MemberController extends Controller
 {
     public function create(Request $req){
         $validator = Validator::make($req->all(), [
-            'name' => 'required|string|alpha:ascii',
+            'name' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'dob' => 'nullable|date',
             'gender' => 'required',
             'email' => 'required|string|unique:member,email|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,6}$/',
@@ -85,7 +85,7 @@ class MemberController extends Controller
     public function update($mid,Request $req){
         $currentMember = Member::find($mid);
         $validator = Validator::make($req->all(), [
-            'name' => 'required|string|alpha:ascii',
+            'name' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'dob' => 'nullable|date',
             'gender' => 'required',
             'email' => "required|unique:member,email,{$mid},mid|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,6}$/",
