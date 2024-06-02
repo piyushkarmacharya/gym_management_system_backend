@@ -11,11 +11,7 @@ use Carbon\Carbon;
 
 class AttendanceController extends Controller
 {
-    public function getTotalPresent($date,Request $req){
-        $totalPresent=Attendance::where('date',$date)->count();
-        return response()->json(["totalPresent" => $totalPresent]);
-
-    }
+    
     public function getMemberTotalPresent($mid,Request $req){
         $currentMonth = Carbon::now()->month;
         $currentYear = Carbon::now()->year;

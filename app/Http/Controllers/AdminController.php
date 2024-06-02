@@ -21,10 +21,12 @@ class AdminController extends Controller
             'password' => $req->password,
         ]);
         $id=0;
+        $name="";
         if($login){
             $id=Admin::where('email',$req->email)->first()->id;
+            $name=Admin::where('email',$req->email)->first()->name;
         }
-        return response()->json(["login"=> $login,"id"=>$id]);
+        return response()->json(["login"=> $login,"id"=>$id,"name"=>$name]);
     }
 
     
@@ -41,9 +43,11 @@ class AdminController extends Controller
                         'password' => Hash::make($req->newPassword),
                     ]
                 );
-            return response()->json(['message'=>'success']);
+            return response()->json(['message'=>'Successfully changed password']);
+            }else{
+                return response()->json(['message'=>'Old password donot match']);
             }
         }
-        return response()->json(['message'=>'failed']);
+        
     }
 }

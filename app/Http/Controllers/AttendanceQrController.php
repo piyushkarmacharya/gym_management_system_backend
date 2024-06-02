@@ -18,5 +18,6 @@ class AttendanceQrController extends Controller
             'qrstr'=>$req->qrstr,
             ]
         );
+        return response()->json(['message'=>"Update Successful"]);
     }
 }
