@@ -83,7 +83,7 @@ class MemberController extends Controller
             'password'=>$random_password,
         ]);
 
-        return response()->json(['message'=>"Member created successfully"],200);
+        return response()->json(['message'=>"Member created successfully",'password'=>$random_password],200);
     }
 
     public function login(Request $req){
@@ -169,9 +169,9 @@ class MemberController extends Controller
                         'password' => Hash::make($req->newPassword),
                     ]
                 );
-            return response()->json(['message'=>'success']);
+            return response()->json(['message'=>'Password changed']);
             }
         }
-        return response()->json(['message'=>'failed']);
+        return response()->json(['message'=>'Failed to change password']);
     }
 }
