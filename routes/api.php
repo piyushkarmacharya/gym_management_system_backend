@@ -9,6 +9,9 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ImageeController;
 use App\Http\Controllers\AttendanceQrController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\FeedbackController;
+use App\Models\Feedback;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,4 +48,6 @@ Route::get('attendance/info/{date}',[AttendanceController::class,'getAttendanceI
 Route::get('attendance/member-total-present/{mid}',[AttendanceController::class,'getMemberTotalPresent']);          
 Route::get('memberattendance/info/{mid}',[AttendanceController::class,'getMemberAttendanceInfo']);          
 
+Route::post('feedback',[FeedbackController::class,'setFeedback']);
+Route::get('feedback/delete/{id}',[FeedbackController::class,'deleteFeedback']);
 

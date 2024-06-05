@@ -54,7 +54,7 @@ class MemberController extends Controller
             'address' => 'required',
             'weight' => 'nullable',
             'height' => 'nullable',
-            'photo' => 'nullable'
+            'photo' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -132,7 +132,7 @@ class MemberController extends Controller
             'address' => 'required',
             'weight' => 'nullable',
             'height' => 'nullable',
-            'photo' => 'nullable'
+            'photo' => 'required'
         ]);
 
         if ($validator->fails()) {

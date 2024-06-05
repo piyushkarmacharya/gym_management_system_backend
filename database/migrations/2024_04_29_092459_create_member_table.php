@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('address');
             $table->double('weight')->nullable();
             $table->double('height')->nullable();
-            $table->mediumText('photo')->nullable();
+            $table->mediumText('photo');
             $table->string('password');
             $table->timestamps();
         });

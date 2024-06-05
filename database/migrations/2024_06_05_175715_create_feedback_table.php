@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attendance', function (Blueprint $table) {
+        Schema::create('feedback', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mid');
-            $table->foreign('mid')->references('mid')->on('member')->onDelete('cascade');
+            $table->unsignedBigInteger("mid");
+            $table->foreign("mid")->references('mid')->on("Member")->onDelete('cascade');
+            $table->longText("feedback");
             $table->date("date");
             $table->timestamps();
         });
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attendance');
+        Schema::dropIfExists('feedback');
     }
 };
