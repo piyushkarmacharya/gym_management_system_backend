@@ -63,12 +63,16 @@ class MemberController extends Controller
 
         $random_password=generateSecureRandomPassword(12);
        
-
-        $mail = Mail::send('mail',['name'=>$req->name, 'email' => $req->email, 'password' => $random_password], function($message) use($req) {
-            $message->to($req->email, $req->name)->subject
-               ('Welcome to Club Desperado');
-            $message->from(env('MAIL_FROM_ADDRESS'),'Club Desperado');
-        });
+        try{
+            $mail = Mail::send('mail',['name'=>$req->name, 'email' => $req->email, 'password' => $random_password], function($message) use($req) {
+                $message->to($req->email, $req->name)->subject
+                   ('Welcome to Club Desperado');
+                $message->from(env('MAIL_FROM_ADDRESS'),'Club Desperado');
+            });
+        }catch(\Exception $e){ // backslash id used to see globally
+            return response()->json(['error' => 'Unable to send email. Please check your internet connection.','password'=>$random_password], 500);
+        }
+      
         
         $member=Member::create([
             'name'=>$req->name,

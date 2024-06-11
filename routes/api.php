@@ -45,9 +45,9 @@ Route::get('AttendanceQr',[AttendanceQrController::class,'read']);
 Route::post('AttendanceQr/update',[AttendanceQrController::class,'update']);             
 Route::post('attendance',[AttendanceController::class,'attend']);             
 Route::get('attendance/info/{date}',[AttendanceController::class,'getAttendanceInfo']);          
-Route::get('attendance/member-total-present/{mid}',[AttendanceController::class,'getMemberTotalPresent']);          
 Route::get('memberattendance/info/{mid}',[AttendanceController::class,'getMemberAttendanceInfo']);          
 
 Route::post('feedback',[FeedbackController::class,'setFeedback']);
+Route::get('feedback/details',[FeedbackController::class,'getFeedback']);
 Route::get('feedback/delete/{id}',[FeedbackController::class,'deleteFeedback']);
 
