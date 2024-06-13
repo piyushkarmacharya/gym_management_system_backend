@@ -117,7 +117,7 @@ class MemberController extends Controller
     }
 
     public function readSingle($name,Request $req){
-        $data=Member::where('name',$name)->get();
+        $data=Member::where('name','like','%'.$name.'%')->get();
         return response()->json($data);
     }
     public function delete($mid,Request $req){
