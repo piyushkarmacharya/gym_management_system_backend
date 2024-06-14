@@ -10,6 +10,6 @@ class Attendance extends Model
     use HasFactory;
     protected $table='attendance';
     protected $primaryKey='id';
-    protected $fillable=['mid','date'];
+    protected $fillable=['mid','date','time'];
 
 }

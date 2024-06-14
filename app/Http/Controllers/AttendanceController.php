@@ -30,6 +30,7 @@ class AttendanceController extends Controller
     public function attend(Request $req)
     {
         $current_date = date("Y-m-d");
+        $current_time=date("H:i:s");
         $attendance = Attendance::where('mid', $req->mid)->orderBy('date', 'desc')->first();
 
         if ($attendance) {
@@ -41,7 +42,8 @@ class AttendanceController extends Controller
                 $attend = Attendance::create(
                     [
                         'mid' => $req->mid,
-                        'date' => date("Y-m-d"),
+                        'date' => $current_date,
+                        'time'=>$current_time,
                     ]
 
                 );
@@ -53,7 +55,8 @@ class AttendanceController extends Controller
             $attend = Attendance::create(
                 [
                     'mid' => $req->mid,
-                    'date' => date("Y-m-d"),
+                   'date' => $current_date,
+                        'time'=>$current_time,
                 ]
 
             );
@@ -65,7 +68,7 @@ class AttendanceController extends Controller
     {
         $info = DB::table('member')
             ->join('attendance', 'member.mid', '=', 'attendance.mid')
-            ->select('attendance.date','member.name','member.mid','member.contact_number','attendance.created_at')
+            ->select('attendance.date','member.name','member.mid','member.contact_number','attendance.time')
             ->where('attendance.date','=',$date)
             ->get();
         
@@ -76,7 +79,7 @@ class AttendanceController extends Controller
     {
         $info = DB::table('member')
             ->join('attendance', 'member.mid', '=', 'attendance.mid')
-            ->select('attendance.date','member.name','member.mid','member.contact_number','attendance.created_at')
+            ->select('attendance.date','member.name','member.mid','member.contact_number','attendance.time')
             ->where('attendance.mid','=',$mid)
             ->orderBy('date', 'desc')
             ->get();
